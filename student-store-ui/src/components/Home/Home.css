@@ -5,4 +5,48 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: gray;
+  align-items: center;
 }
+
+.hero {
+  display: flex;
+}
+
+.sub-navbar {
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+  margin-left: auto;
+  flex: 1;
+  max-width: 650px;
+}
+
+.nav-link {
+  flex: 1;
+  height: 49px;
+  display: flex;
+  cursor: pointer;
+  padding: 0px 20px;
+  align-items: center;
+  justify-content: center;
+  color: var(--twitter-dark-gray);
+  font-weight: 500;
+  border-bottom: solid 2px transparent;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+
+    

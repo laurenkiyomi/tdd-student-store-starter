@@ -1,0 +1,16 @@
+import * as React from "react"
+import Navbar from "../Navbar/Navbar"
+import Sidebar from "../Sidebar/Sidebar"
+import Home from "../Home/Home"
+import "./App.css"
+import { Routes, Route, Link, useParams } from 'react-router-dom'
+
+/*
+  <Routes>
+    <Route path="/" element={<Home />}/>
+  </Routes>
+*/
+
+/*
+    <Link to="/">Home</Link>
+*/
