@@ -8,6 +8,6 @@ export default function Navbar(props) {
       <Logo />
     </nav>
     */
-   <p>Navbar</p>
+   <p className="navbar">Navbar</p>
   )
 }
