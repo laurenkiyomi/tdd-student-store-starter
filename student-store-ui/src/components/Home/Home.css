@@ -63,5 +63,31 @@
   position: relative;
 }
 
+.about, .contact, .footer{
+  display: flex;
+  flex-direction: column;
+}
 
-    
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+  width: 80%;
+
+}
+
+.contact.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+  width: 80%;
+}

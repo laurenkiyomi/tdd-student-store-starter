@@ -2,7 +2,7 @@ import * as React from "react"
 import ProductCard from "./ProductCard"
 import "./ProductGrid.css"
 
-export default function ProductGrid({ products, handleAddItemToCart, handleRemoveItemFromCart }) {
+export default function ProductGrid({ products, handleAddItemToCart, handleRemoveItemFromCart, returnQuantity }) {
     if (products.length === 0) {
         return (
             <p className="no-products-message">No products available.</p>
@@ -19,9 +19,9 @@ export default function ProductGrid({ products, handleAddItemToCart, handleRemov
                         product={product}
                         name={product.name}
                         productId={product.id} 
-                        quantity={0}
+                        quantity={returnQuantity(product.id)}
                         handleAddItemToCart={handleAddItemToCart}
-                        handleRemoveItemToCart={handleRemoveItemFromCart}
+                        handleRemoveItemFromCart={handleRemoveItemFromCart}
                         showDescription={false}
                         image={product.image}/>
                 )

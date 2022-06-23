@@ -15,7 +15,7 @@ export default function ProductView({ product, productId, quantity, handleAddIte
                 quantity={quantity}
                 handleAddItemToCart={handleAddItemToCart}
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
-                showDescription={true}
+                showDescription={showDescription}
                 image={product.image}/>
         </div>
     )

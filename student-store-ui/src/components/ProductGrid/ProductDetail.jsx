@@ -4,9 +4,11 @@ import axios from 'axios';
 import "../App/App.css"
 import * as ReactBootStrap from 'react-bootstrap'
 import ProductView from "./ProductView";
+import Hero from "../Home/Hero";
+import SubNavBar from "../Home/SubNavBar";
+import "../Home/Home.css"
 
-export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFromCart }) {
-    console.log('Run the render cycle')
+export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFromCart, returnQuantity, setSearch, setCategory, search }) {
     const [product, setProduct] = React.useState(null)
     const [spinner, setSpinner] = React.useState(false);  
     const params = useParams()
@@ -17,9 +19,7 @@ export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFro
         const data = await axios(URL)
         setSpinner(true)
         
-        console.log(data.data.product)
         setProduct(data.data.product)
-       
     }
 
     React.useEffect(() => {
@@ -28,10 +28,12 @@ export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFro
 
     return (
         <div className="product-detail">
+            <Hero />
+            <SubNavBar setSearch={setSearch} setCategory={setCategory} search={search} />
             {spinner ? <ProductView 
                 product={product}
                 productId={productId}
-                quantity={0}
+                quantity={returnQuantity(productId)}
                 handleAddItemToCart={handleAddItemToCart}
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
                 showDescription={true}/> 

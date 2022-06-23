@@ -13,7 +13,7 @@ export default function App() {
   const [error, setError] = React.useState("")
   const [isOpen, setIsOpen] = React.useState(false)
   const [shoppingCart, setShoppingCart] = React.useState([])
-  const [checkoutForm, setCheckoutForm] = React.useState(null)
+  const [checkoutForm, setCheckoutForm] = React.useState({name: "", email: ""})
   const [search, setSearch] = React.useState("")
   const [category, setCategory] = React.useState("all")
   const URL = "https://codepath-store-api.herokuapp.com/store"
@@ -70,35 +70,99 @@ export default function App() {
     }
   }
 
-  const handleAddItemToCart = (productId) => {
-      if (!shoppingCart.contains(productId)) {
-        const newItem = {
-          productId: productId,
-          quantity: 1
+  const returnQuantity = (productId) => {
+    let quant = 0
+    shoppingCart.forEach((item) => {
+        if (item.productId === productId) {
+            quant = item.quantity
         }
-        setShoppingCart((oldShoppingCart) => [...oldShoppingCart, newItem])
+    }
+  )
+ 
+  return quant
+  }
+
+  const handleAddItemToCart = (productId) => {
+    let temp = []
+    let inArray = false
+
+    shoppingCart.forEach((item) => {
+      if (item.productId === productId) {
+        let newItem = {
+          productId: productId,
+          quantity: item.quantity + 1
+        }
+
+        inArray = true
+        temp.push(newItem)
       }
 
       else {
-        shoppingCart.forEach((item) => {
-          if (item.productId = productId) {
-            item.quantity += 1
-            return
-          }
-        })
+        temp.push(item)
       }
+    })
+
+
+    if (!inArray) {
+      let newItem2 = {
+        productId: productId,
+        quantity: 1
+      }
+
+      temp.push(newItem2)
+    }
+
+    setShoppingCart(temp)
   }
 
   const handleRemoveItemFromCart = (productId) => {
-    
+    let temp = []
+    shoppingCart.forEach((item) => {
+      if (item.productId = productId) {
+        if (item.quantity > 1) {
+          item.quantity -= 1
+          temp.push(item)
+        }
+      }
+
+      else {
+        temp.push(item)
+      }
+    })
+
+    setShoppingCart(temp)
   }
 
   const handleOnCheckoutFormChange = (name, value) => {
+    if (name === "email") {
+      setCheckoutForm((old) =>
+        ({ name: old.name, 
+          email: value })
+    )}
 
+    else if (name === "name") {
+      setCheckoutForm((old) =>
+        ({ name: value, 
+          email: old.email })
+    )}
+
+    
   }
 
   const handleOnSubmitCheckoutForm = () => {
+    if (shoppingCart.length === 0) {
+      setError("No cart or items in cart found to checkout.")
+    }
 
+    else if (checkoutForm.name.length === 0 || checkoutForm.email.length === 0) {
+      setError("User info must include an email and name.")
+    }
+
+    else {
+      setError("Success")
+      //setCheckoutForm({name: "", email: ""})
+      //setShoppingCart([])
+    }
   }
 
   return (
@@ -110,22 +174,11 @@ export default function App() {
             checkoutForm={checkoutForm}
             handleOnCheckoutFormChange={handleOnCheckoutFormChange} 
             handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} 
-            handleOnToggle={handleOnToggle}/>
+            handleOnToggle={handleOnToggle}
+            returnQuantity={returnQuantity}
+            error={error}/>
       <BrowserRouter>
         <main>
-          {/* <Navbar />
-          <Sidebar 
-            isOpen={isOpen} 
-            shoppingCart={shoppingCart} 
-            products={products} 
-            checkoutForm={checkoutForm}
-            handleOnCheckoutFormChange={handleOnCheckoutFormChange} 
-            handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} 
-            handleOnToggle={handleOnToggle}/> */}
-          {/* <Home 
-          products={products} 
-          handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart}/> */}
-        
           <Navbar />
           <Routes>
             <Route path="/" element={<Home 
@@ -134,10 +187,15 @@ export default function App() {
               handleRemoveItemFromCart={handleRemoveItemFromCart}
               setSearch={setSearch}
               setCategory={setCategory}
-              search={search}/>}/>
+              search={search}
+              returnQuantity={returnQuantity}/>}/>
             <Route path="/products/:productId" element={<ProductDetail 
               handleAddItemToCart={handleAddItemToCart} 
-              handleRemoveItemFromCart={handleRemoveItemFromCart}/>}/>
+              handleRemoveItemFromCart={handleRemoveItemFromCart}
+              returnQuantity={returnQuantity}
+              setSearch={setSearch}
+              setCategory={setCategory}
+              search={search}/>}/>
             <Route path="*" element={
                 <main style={{ padding: "1rem" }}>
                   <p>There's nothing here!</p>

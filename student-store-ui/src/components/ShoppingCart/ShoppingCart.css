@@ -1,0 +1,16 @@
+.product-row {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    justify-content: space-between;
+    border-bottom: solid 1px var(--border-color);
+    width: 500px;
+}
+
+.receipt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+}
