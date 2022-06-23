@@ -3,7 +3,20 @@ import axios from 'axios';
 import "./ShoppingCart.css"
 
 export default function ShoppingCart({ isOpen, products, shoppingCart, returnQuantity }) {  
-    var subtotal = 0
+    const getSubtotal = () => {
+        let subtot = 0;
+        for (let i = 0; i < shoppingCart.length; i++) {
+            for (let j = 0; j < products.length; j++) {
+                if (products[j].id === shoppingCart[i].productId) {
+                    subtot += returnQuantity(products[j].id) * products[j].price
+                }
+            }
+        }
+
+        return subtot
+    }
+
+
     return (
         <div className="shopping-cart">
             {shoppingCart.length===0 ? 
@@ -11,34 +24,36 @@ export default function ShoppingCart({ isOpen, products, shoppingCart, returnQua
                 <div className="cart-contents">
                     {shoppingCart.map((item) => {
                         return (
-                            <ProductRow key={item.productId} item={item} quantity={returnQuantity(item.productId)} subtotal={subtotal}/>
+                            <ProductRow key={item.productId} item={item} quantity={returnQuantity(item.productId)} products={products}/>
                         )
                     })}
                     
                     <div className="receipt subtotal">
                         <span>SUBTOTAL</span>
-                        <span>{`$${subtotal.toFixed(2)}`}</span>
+                        <span>{`$${(getSubtotal()).toFixed(2)}`}</span>
                     </div>
                     <div className="receipt total-price">
                         <span>SUBTOTAL</span>
-                        <span>{`$${(subtotal * 1.0875).toFixed(2)}`}</span>
+                        <span>{`$${(getSubtotal() * 1.0875).toFixed(2)}`}</span>
                     </div>
                 </div>}
         </div>
     )
 }
 
-export function ProductRow({ item, quantity, subtotal }) {
+export function ProductRow({ item, quantity, products }) {
     const [product, setProduct] = React.useState(null)
 
-    const fetchProductData = async () => {
-        const URL = `https://codepath-store-api.herokuapp.com/store/${item.productId}`
-        const data = await axios(URL)
-        setProduct(data.data.product)
+    const getProductData = async () => {
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].id === item.productId) {
+                setProduct(products[i])
+            }
+        }
     }
 
     React.useEffect(() => {
-        fetchProductData()
+        getProductData()
     }, [])
 
     // Don't show the product unless we have fetched the product
