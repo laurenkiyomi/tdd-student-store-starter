@@ -7,7 +7,7 @@ export default function ProductView({ product, productId, quantity, handleAddIte
 
     return (
         <div className="product-view">
-            <h1 className="product-name-id">{`Product #${productId}`}</h1>
+            <h1 className="product-id">{`Product #${productId}`}</h1>
             <ProductCard 
                 product={product}
                 name={product.name}

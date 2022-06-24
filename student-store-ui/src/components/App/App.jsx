@@ -7,6 +7,7 @@ import axios from 'axios';
 import ProductDetail from "../ProductGrid/ProductDetail"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useEffect } from "react"
+import NotFound from "../NotFound/NotFound"
 
 export default function App() {
   const [products, setProducts] = React.useState([])
@@ -21,6 +22,7 @@ export default function App() {
   const URL = "https://codepath-store-api.herokuapp.com/store"
 
   async function fetchData () {
+    setIsFetching(true)
     const data = await axios(URL)
     let temp = []
     let searchLength = search.length
@@ -58,6 +60,8 @@ export default function App() {
 
       setProducts(temp)
     }
+
+    setIsFetching(false)
   }
 
   React.useEffect(fetchData, [search, category])
@@ -214,7 +218,7 @@ export default function App() {
               search={search}/>}/>
             <Route path="*" element={
                 <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
+                  <NotFound className="notfound"/>
                 </main>}/>
           </Routes>
           

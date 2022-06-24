@@ -72,10 +72,10 @@ export function ProductRow({ item, quantity, products }) {
 
     return (
         <div className="product-row">
-            <div className="cart-item-name">{product.name}</div>
-            <div className="cart-item-quantity">{quantity}</div>
-            <div className="cart-item-unit-price">{`$${product.price.toFixed(2)}`}</div>
-            <div className="cart-item-price">{`$${(product.price * quantity).toFixed(2)}`}</div>
+            <div className="cart-product-name">{product.name}</div>
+            <div className="cart-product-quantity">{quantity}</div>
+            <div className="cart-product-unit-price">{`$${product.price.toFixed(2)}`}</div>
+            <div className="cart-product-price">{`$${(product.price * quantity).toFixed(2)}`}</div>
         </div>
     )
 
