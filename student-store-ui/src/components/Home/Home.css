@@ -82,8 +82,10 @@
 }
 
 .active {
-  text-decoration: underline ;
-  color: #f4a261;
+  color: white;
+  background-color: #f4a261;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /*Extra Info At Bottom Of Page*/
