@@ -27,7 +27,7 @@ export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFro
             setProduct(data.data.product)
         } catch(error) {
             setSpinner(true)
-            console.log("hello")
+         
             setNotFound(true)
         }
     }
