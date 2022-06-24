@@ -3,8 +3,11 @@ import * as React from "react"
 export default function Hero(props) {
     return (
         <div className="hero">
-            <p className="intro">PLeaseee buy something pleasseee</p>
-            <img className="hero-img" src="https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=480:*" alt="Hero" />
+            <div className="intro">
+                <p>Welcome! <br/> Find Your Merch!</p> 
+                <p className="intro-para">We have all kinds of goodies. Click on any of the items to start filling up your shopping cart. Checkout whenever you're ready.</p> 
+            </div>
+            <img className="hero-img" src="	https://codepath-student-store-demo.surge.sh/assets/student_store_icon.18e5d61a.svg" alt="Hero" />
         </div>
     )
 }

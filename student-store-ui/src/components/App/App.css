@@ -7,6 +7,9 @@
   flex-direction: row;
   overflow-x: hidden;
   position: relative;
+  background-color: #e76f51;
+  border: solid 1px white;
+
 }
 .app main {
   width: 100%;

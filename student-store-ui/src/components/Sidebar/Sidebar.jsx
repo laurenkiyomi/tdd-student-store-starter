@@ -3,15 +3,10 @@ import "./Sidebar.css"
 import CheckoutForm from "../../CheckoutForm/CheckoutForm"
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
 
-export default function Sidebar({ isOpen, shoppingCart, products, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, handleOnToggle, returnQuantity, error }) {
+export default function Sidebar({ isOpen, shoppingCart, products, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, handleOnToggle, returnQuantity, error, lastOrder }) {
   let sideBarState = isOpen ? "open" : ""
 
   return (
-    /*<section className={`sidebar ${sideBarState}`}>
-      <button className="toggle-button" onClick={handleOnToggle}>➡️</button>
-      {isOpen ? "opened" : "closed"}
-    </section>*/
-
     <section className={`sidebar ${sideBarState}`}>
       {isOpen ? <OpenedSideBar 
               isOpen={isOpen} 
@@ -22,7 +17,8 @@ export default function Sidebar({ isOpen, shoppingCart, products, checkoutForm, 
               handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} 
               handleOnToggle={handleOnToggle}
               returnQuantity={returnQuantity}
-              error={error}/> : 
+              error={error}
+              lastOrder={lastOrder}/> : 
             <ClosedSideBar
               handleOnToggle={handleOnToggle}/>}
     </section>
@@ -34,14 +30,14 @@ export default function Sidebar({ isOpen, shoppingCart, products, checkoutForm, 
 
 export function ClosedSideBar({ handleOnToggle }) {
   return (
-      <button className="toggle-button" onClick={handleOnToggle}>open</button>
+      <button className="toggle-button material-icons md-48" onClick={handleOnToggle}>arrow_forward</button>
   )
 }
 
-export function OpenedSideBar({ isOpen, shoppingCart, products, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, handleOnToggle, returnQuantity, error }) {
+export function OpenedSideBar({ isOpen, shoppingCart, products, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, handleOnToggle, returnQuantity, error, lastOrder }) {
   return (
     <div className="open-sidebar">
-      <button className="toggle-button" onClick={handleOnToggle}>close</button>
+      <button className="toggle-button material-icons md-48" onClick={handleOnToggle}>arrow_back</button>
       <ShoppingCart 
         isOpen={isOpen}
         products={products}
@@ -53,7 +49,9 @@ export function OpenedSideBar({ isOpen, shoppingCart, products, checkoutForm, ha
         checkoutForm={checkoutForm}
         handleOnCheckoutFormChange={handleOnCheckoutFormChange}
         handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
-        error={error}/>
+        error={error}
+        lastOrder={lastOrder}
+        products={products}/>
     </div>
   )
 }

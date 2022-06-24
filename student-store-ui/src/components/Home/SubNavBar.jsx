@@ -7,10 +7,8 @@ export default function SubNavBar( {setSearch, setCategory, search} ) {
 
     return (
         <div className="sub-navbar">
-            <div className="sub-navbar-content">
-                <SearchBar className="search-bar" value={search} handleOnSearchChange={handleOnSearchChange}/>
-                <NavLinks setSearch={setSearch} setCategory={setCategory}/>
-            </div>
+            <SearchBar className="search-bar" value={search} handleOnSearchChange={handleOnSearchChange}/>
+            <NavLinks setSearch={setSearch} setCategory={setCategory}/>
         </div>
     )
 }
@@ -39,13 +37,14 @@ export function NavLink({ category, title, setCategory }) {
     }
 
     return (
-        <button onClick={changeCategory}>{title}</button>
+        <button className="nav-button" onClick={changeCategory}>{title}</button>
     )
 }
 
 export function SearchBar({ value, handleOnSearchChange }) {
     return (
         <input 
+            className="search" 
             name="product-search-input"
             type="text"
             placeholder="Search for a product"

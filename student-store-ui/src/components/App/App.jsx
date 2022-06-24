@@ -6,10 +6,12 @@ import "./App.css"
 import axios from 'axios';
 import ProductDetail from "../ProductGrid/ProductDetail"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { useEffect } from "react"
 
 export default function App() {
   const [products, setProducts] = React.useState([])
   const [isFetching, setIsFetching] = React.useState(false)
+  const [lastOrder, setLastOrder] = React.useState(null)
   const [error, setError] = React.useState("")
   const [isOpen, setIsOpen] = React.useState(false)
   const [shoppingCart, setShoppingCart] = React.useState([])
@@ -73,7 +75,7 @@ export default function App() {
   const returnQuantity = (productId) => {
     let quant = 0
     shoppingCart.forEach((item) => {
-        if (item.productId === productId) {
+        if (item.itemId == parseInt(productId)) {
             quant = item.quantity
         }
     }
@@ -87,9 +89,9 @@ export default function App() {
     let inArray = false
 
     shoppingCart.forEach((item) => {
-      if (item.productId === productId) {
+      if (item.itemId == productId) {
         let newItem = {
-          productId: productId,
+          itemId: parseInt(productId),
           quantity: item.quantity + 1
         }
 
@@ -105,7 +107,7 @@ export default function App() {
 
     if (!inArray) {
       let newItem2 = {
-        productId: productId,
+        itemId: parseInt(productId),
         quantity: 1
       }
 
@@ -118,7 +120,7 @@ export default function App() {
   const handleRemoveItemFromCart = (productId) => {
     let temp = []
     shoppingCart.forEach((item) => {
-      if (item.productId = productId) {
+      if (item.itemId == productId) {
         if (item.quantity > 1) {
           item.quantity -= 1
           temp.push(item)
@@ -152,18 +154,31 @@ export default function App() {
   const handleOnSubmitCheckoutForm = () => {
     if (shoppingCart.length === 0) {
       setError("No cart or items in cart found to checkout.")
+      throw new Error("Bad Request. No cart items.")
     }
 
     else if (checkoutForm.name.length === 0 || checkoutForm.email.length === 0) {
       setError("User info must include an email and name.")
+      throw new Error("Bad Request. User info missing.")
     }
 
     else {
-      setError("Success")
-      //setCheckoutForm({name: "", email: ""})
-      //setShoppingCart([])
+      axios.post(URL, {user: checkoutForm, shoppingCart: shoppingCart})
+      .then(response => {
+        setError("Success")
+        setLastOrder({checkoutForm: checkoutForm, shoppingCart: shoppingCart})
+        setShoppingCart([])
+        setCheckoutForm({name: "", email: ""})
+      })
+      .catch(error => {
+        setError("Unknown post request error.")
+      })
     }
   }
+
+  useEffect(()=>{
+    console.log(shoppingCart)
+  }, [shoppingCart])
 
   return (
     <div className="app">
@@ -176,7 +191,8 @@ export default function App() {
             handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} 
             handleOnToggle={handleOnToggle}
             returnQuantity={returnQuantity}
-            error={error}/>
+            error={error}
+            lastOrder={lastOrder}/>
       <BrowserRouter>
         <main>
           <Navbar />

@@ -7,7 +7,7 @@ export default function ShoppingCart({ isOpen, products, shoppingCart, returnQua
         let subtot = 0;
         for (let i = 0; i < shoppingCart.length; i++) {
             for (let j = 0; j < products.length; j++) {
-                if (products[j].id === shoppingCart[i].productId) {
+                if (products[j].id === shoppingCart[i].itemId) {
                     subtot += returnQuantity(products[j].id) * products[j].price
                 }
             }
@@ -19,22 +19,33 @@ export default function ShoppingCart({ isOpen, products, shoppingCart, returnQua
 
     return (
         <div className="shopping-cart">
+            <h1 className="shopping-cart-title">YOUR CART</h1>
             {shoppingCart.length===0 ? 
                 <p className="notification">No items added to cart yet. Start shopping now!</p> : 
                 <div className="cart-contents">
+                    <div className="cart-header">
+                        <h2 className="header-text header-item">Item</h2>
+                        <h2 className="header-text header-quantity">Quantity</h2>
+                        <h2 className="header-text header-unit">Unit Price</h2>
+                        <h2 className="header-text header-cost">Cost</h2>
+                    </div>
                     {shoppingCart.map((item) => {
                         return (
-                            <ProductRow key={item.productId} item={item} quantity={returnQuantity(item.productId)} products={products}/>
+                            <ProductRow key={item.itemId} item={item} quantity={returnQuantity(item.itemId)} products={products}/>
                         )
                     })}
                     
-                    <div className="receipt subtotal">
-                        <span>SUBTOTAL</span>
-                        <span>{`$${(getSubtotal()).toFixed(2)}`}</span>
+                    <div className="receipt-table subtotal">
+                        <span className="receipt-label">SUBTOTAL</span>
+                        <span className="receipt-price">{`$${(getSubtotal()).toFixed(2)}`}</span>
                     </div>
-                    <div className="receipt total-price">
-                        <span>SUBTOTAL</span>
-                        <span>{`$${(getSubtotal() * 1.0875).toFixed(2)}`}</span>
+                    <div className="receipt-table tax">
+                        <span className="receipt-label">TAXES & FEES</span>
+                        <span className="receipt-price">{`$${(getSubtotal() * .0875).toFixed(2)}`}</span>
+                    </div>
+                    <div className="receipt-table total-price">
+                        <span className="receipt-label">TOTAL</span>
+                        <span className="receipt-price">{`$${(getSubtotal() * 1.0875).toFixed(2)}`}</span>
                     </div>
                 </div>}
         </div>
@@ -46,7 +57,7 @@ export function ProductRow({ item, quantity, products }) {
 
     const getProductData = async () => {
         for (let i = 0; i < products.length; i++) {
-            if (products[i].id === item.productId) {
+            if (products[i].id === item.itemId) {
                 setProduct(products[i])
             }
         }

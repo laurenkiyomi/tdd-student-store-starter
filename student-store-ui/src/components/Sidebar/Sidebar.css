@@ -9,14 +9,22 @@
     z-index: 100;
     top: 0px;
     height: 100vh;
-    padding: 0;
     overflow-y: scroll;
-    padding-bottom: 2rem;
     background: var(--dark-blue);
+    border-top: solid 1px white;
     border-right: solid 1px white;
-    background: pink
+    padding: 10px;
+    background: #e76f51;
 }
 
 .sidebar.open {
-    width: 575px;
+    width: 530px;
+}
+
+.toggle-button {
+    border-width: 0px;
+    background: transparent;
+    width: 100%;
+    font-size: 30px;
+    color: #fefae0;
 }

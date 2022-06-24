@@ -13,8 +13,8 @@ export default function ProductCard({ product, name, productId, quantity, handle
             <div className="product-card-text">
                 <h2 className="product-name">{name}</h2>
                 <p className="product-price">{`$${price}`}</p>
-                {showDescription ? <p className="product-description">{product.description}</p> : ""}
             </div>
+            {showDescription ? <p className="product-description">{product.description}</p> : ""}
             <div className="quantity-buttons">
                 <button className="remove" onClick={() => handleRemoveItemFromCart(productId)}>-</button>
                 <p className="product-quantity">{quantity}</p>

@@ -1,9 +1,22 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
     margin-left: 60px;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: 50%;
+    background-color: #e76f51;
+    z-index: 99;
+    height: 80px;
+}
+
+.logo {
+    width: 25px;
+    margin-left: 15px;
+}
+
+.nav-button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin: 0px;
+    font-size: 16px;
 }
