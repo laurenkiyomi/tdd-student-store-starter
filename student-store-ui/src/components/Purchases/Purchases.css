@@ -1,0 +1,69 @@
+
+.purchases {
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+    margin-top: 20px;
+    align-items: left;
+}
+
+h1 {
+    color: #fefae0;
+    font-size: 16px;
+    font-family: 'Fira Sans', sans-serif;
+    align-self: center;
+}
+
+.purchases-list {
+    background-color: #fefae0;
+    padding: 10px;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    font-family: 'Fira Sans', sans-serif;
+    color: #264653;
+    font-size: 24px;
+}
+
+.purchase-item {
+    margin: 20px;
+    font-family: 'Fira Sans', sans-serif;
+    color: #264653;
+}
+
+.purchase-id {
+    font-family: 'Fira Sans', sans-serif;
+    background-color: transparent;
+    border: 0px solid #fefae0;
+    padding: 0px;
+    font-size: 24px;
+    color: #264653;
+    font-weight: bolder;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.purchaser {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.receipt {
+    margin-top: 10px;
+}
+
+.receipt-item {
+    font-size: 12px;
+}
+
+.total-price {
+    font-size: 14px;
+}
+
+.item-name {
+    padding-top: 3px;
+}
+
+
+

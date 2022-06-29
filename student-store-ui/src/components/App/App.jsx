@@ -7,6 +7,7 @@ import axios from 'axios';
 import ProductDetail from "../ProductGrid/ProductDetail"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useEffect } from "react"
+import Purchases from "../Purchases/Purchases"
 import NotFound from "../NotFound/NotFound"
 
 export default function App() {
@@ -19,11 +20,11 @@ export default function App() {
   const [checkoutForm, setCheckoutForm] = React.useState({name: "", email: ""})
   const [search, setSearch] = React.useState("")
   const [category, setCategory] = React.useState("all")
-  const URL = "https://codepath-store-api.herokuapp.com/store"
+  const URL = "http://localhost:3001/store"
 
   async function fetchData () {
     setIsFetching(true)
-    const data = await axios(URL)
+    const data = await axios.get(URL)
     let temp = []
     let searchLength = search.length
     
@@ -155,22 +156,20 @@ export default function App() {
     
   }
 
-  const handleOnSubmitCheckoutForm = () => {
+  async function handleOnSubmitCheckoutForm () {
     if (shoppingCart.length === 0) {
       setError("No cart or items in cart found to checkout.")
-      throw new Error("Bad Request. No cart items.")
     }
 
     else if (checkoutForm.name.length === 0 || checkoutForm.email.length === 0) {
       setError("User info must include an email and name.")
-      throw new Error("Bad Request. User info missing.")
     }
 
     else {
       axios.post(URL, {user: checkoutForm, shoppingCart: shoppingCart})
       .then(response => {
         setError("Success")
-        setLastOrder({checkoutForm: checkoutForm, shoppingCart: shoppingCart})
+        setLastOrder(response.data.purchase)
         setShoppingCart([])
         setCheckoutForm({name: "", email: ""})
       })
@@ -180,9 +179,6 @@ export default function App() {
     }
   }
 
-  useEffect(()=>{
-    console.log(shoppingCart)
-  }, [shoppingCart])
 
   return (
     <div className="app">
@@ -216,6 +212,7 @@ export default function App() {
               setSearch={setSearch}
               setCategory={setCategory}
               search={search}/>}/>
+            <Route path="/purchases" element={<Purchases/>}/>
             <Route path="*" element={
                 <main style={{ padding: "1rem" }}>
                   <NotFound className="notfound"/>

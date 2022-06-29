@@ -51,8 +51,8 @@ export function Receipt({ lastOrder, products }) {
     return (
         <div className="receipt">
             <h2 className="receipt-title ">Receipt</h2>
-            <p className="receipt-name">{`Showing receipt for ${lastOrder.checkoutForm.name}:`}</p>
-            {lastOrder.shoppingCart.map((item) => {
+            <p className="receipt-name">{`Showing receipt for ${lastOrder.name}:`}</p>
+            {lastOrder.order.map((item) => {
                 return (
                         <div className="receipt-item" key={item.itemId}>
                             

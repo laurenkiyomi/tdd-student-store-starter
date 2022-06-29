@@ -10,6 +10,7 @@ export default function Navbar(props) {
       <Link to="/"><button className="nav-button">Home</button></Link>
       <a id="about-jump" href="#about"><button className="nav-button">About</button></a>
       <a id="contact-jump" href="#contact"><button className="nav-button">Contact Us</button></a>
+      <Link to="/purchases"><button className="nav-button">Past Orders</button></Link>
     </nav>
     
   )

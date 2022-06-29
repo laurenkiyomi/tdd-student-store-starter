@@ -18,7 +18,7 @@ export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFro
 
     const fetchProductData = async () => {
         setNotFound(false)
-        const URL = `https://codepath-store-api.herokuapp.com/store/${productId}`
+        const URL = `http://localhost:3001/store/${productId}`
 
         try {
             const data = await axios.get(URL)
@@ -27,7 +27,6 @@ export default function ProductDetail({ handleAddItemToCart, handleRemoveItemFro
             setProduct(data.data.product)
         } catch(error) {
             setSpinner(true)
-            console.log("hello")
             setNotFound(true)
         }
     }

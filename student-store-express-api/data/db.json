@@ -145,5 +145,19 @@
       "price": 999.99
     }
   ],
-  "purchases": []
+  "purchases": [
+    {
+      "id": 1,
+      "name": "Lauren Lee",
+      "email": "laurenklee@fb.com",
+      "order": [
+        {
+          "itemId": 1,
+          "quantity": 1
+        }
+      ],
+      "total": 1.076625,
+      "createdAt": "2022-06-29T19:03:40.531Z"
+    }
+  ]
 }
