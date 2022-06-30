@@ -8,6 +8,10 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 https://user-images.githubusercontent.com/86620096/175699991-e472f1a7-85bf-43f4-a8f0-df0eda4509dd.mp4
 
 
+https://user-images.githubusercontent.com/86620096/176729382-ba63b5c5-a7c2-49b4-af2d-5a3bb3bf3f24.mp4
+
+
+
 ### Application Features
 
 #### Core Features
