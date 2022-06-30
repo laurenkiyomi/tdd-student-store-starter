@@ -4,10 +4,10 @@
 
 Selling merchandise in the modern era requires digital solutions. For this project, you'll be tasked with designing and constructing an online student store for the College of Codepath. The application entails a frontend user interface for potential customers to peruse the goods, and a backend API to handle data management. The API will be built with Node and Express and the UI will be built with React.
 
-
+Part 1:
 https://user-images.githubusercontent.com/86620096/175699991-e472f1a7-85bf-43f4-a8f0-df0eda4509dd.mp4
 
-
+Part 2:
 https://user-images.githubusercontent.com/86620096/176729382-ba63b5c5-a7c2-49b4-af2d-5a3bb3bf3f24.mp4
 
 
@@ -31,8 +31,8 @@ https://user-images.githubusercontent.com/86620096/176729382-ba63b5c5-a7c2-49b4-
 
 - [x] User can click in the top navigation bar to scroll to the relevant section.
 - [x] User sees a "not found" display when searching for a nonexistent product.
-- [ ] Create an endpoint for fetching all orders in the database, and an endpoint for serving an individual order based on its id.
-- [ ] Build a page in the UI that displays the list of all past orders and lets the user click on any individual order to take them to a more detailed page of the transaction.
+- [x] Create an endpoint for fetching all orders in the database, and an endpoint for serving an individual order based on its id.
+- [x] Build a page in the UI that displays the list of all past orders and lets the user click on any individual order to take them to a more detailed page of the transaction.
 - [ ] Allow users to use an input to filter orders by the email of the person who placed the order.
 
 ### Passing Automated Tests
@@ -84,7 +84,7 @@ The following specifications were met on the Express backend and the React front
         - [x] If the new quantity is `0`, it should remove the item from the `shoppingCart`
       - [x] The **`handleOnCheckoutFormChange`** function. When called...
         - [x] It should receive two arguments:
-          - [ ] `name` - the `name` attribute of the input being updated
+          - [x] `name` - the `name` attribute of the input being updated
           - [x] `value` - the new value to set for that input
         - [x] It should update the `checkoutForm` object with the new value from the correct input(s)
       - [x] The **`handleOnSubmitCheckoutForm`** function. When called...
@@ -238,7 +238,7 @@ The following specifications were met on the Express backend and the React front
         - [x] the `placeholder` prop set to `Student Name`
         - [x] the `value` prop set by `checkoutForm.name`.
         - [x] a valid `onChange` prop that uses the `handleOnCheckoutFormChange` function to update the `checkoutForm` state
-  - [x]] Should render a `button` element with the `className` of `checkout-button`.
+  - [x] Should render a `button` element with the `className` of `checkout-button`.
     - [x] It should contain the text `Checkout`.
     - [x] When clicked, it should call the `handleOnSubmit` function.
       - [x] If that request fails, the `CheckoutForm` component should display an error message inside an element with the `className` of `error`.
@@ -248,42 +248,42 @@ The following specifications were met on the Express backend and the React front
         - [x] The `checkoutForm` should be reset to its default state.
 
 **Server** - Create an Express server
-  - [ ] Wire up the appropriate middleware and error handlers in the `app.js` file
-  - [ ] Create a single `GET` request handler at the `/` endpoint. It should respond to all `GET` requests with a JSON object and a `200` status code. The JSON response should contain a single key of `ping` that stores the string value: `pong`. For example: `{ "ping": "pong" }`.
-  - [ ] Have a `server.js` file that starts the app by listening on port `3001`.
+  - [x] Wire up the appropriate middleware and error handlers in the `app.js` file
+  - [x] Create a single `GET` request handler at the `/` endpoint. It should respond to all `GET` requests with a JSON object and a `200` status code. The JSON response should contain a single key of `ping` that stores the string value: `pong`. For example: `{ "ping": "pong" }`.
+  - [x] Have a `server.js` file that starts the app by listening on port `3001`.
 
 **Models** - The API should use a `Store` model that handles the following
-  - [ ] List all products currently in the `db.json` file
-  - [ ] Fetch a single product by its id
-  - [ ] Create a purchase order
+  - [x] List all products currently in the `db.json` file
+  - [x] Fetch a single product by its id
+  - [x] Create a purchase order
 
 **Routes** - The API should contain a route mounted at the `/store` endpoint
-  - [ ] It should respond to `GET` requests to `/store` with an array of all products in the store in this format: `{ "products": products }`
-  - [ ] It should respond to `GET` requests to `/store/:productId` with a single product based on the product's id using this JSON format: `{ "product": product }`
-  - [ ] It should allow `POST` requests to the `/store` endpoint:
-    - [ ] The endpoint should create purchase orders for users and save them to the `db.json` file
-    - [ ] The endpoint should accept a request body that contains `shoppingCart` and `user` fields.
-      - [ ] The `shoppingCart` field should contain the user's order.
-        - [ ] This should be an array of objects.
-        - [ ] Each object in the array should have two fields:
+  - [x] It should respond to `GET` requests to `/store` with an array of all products in the store in this format: `{ "products": products }`
+  - [x] It should respond to `GET` requests to `/store/:productId` with a single product based on the product's id using this JSON format: `{ "product": product }`
+  - [x] It should allow `POST` requests to the `/store` endpoint:
+    - [x] The endpoint should create purchase orders for users and save them to the `db.json` file
+    - [x] The endpoint should accept a request body that contains `shoppingCart` and `user` fields.
+      - [x] The `shoppingCart` field should contain the user's order.
+        - [x] This should be an array of objects.
+        - [x] Each object in the array should have two fields:
           <!-- - [ ] The `item` field should store an object of the item being purchased -->
-          - [ ] The `itemId` field should store the `id` of the item being purchased
-          - [ ] The `quantity` field should store a number representing how many of that item the user is purchasing.
-      - [ ] The `user` field should contain the name and email of the person placing the order.
-      - [ ] When either the `shoppingCart` or `user` fields are missing, it should throw a `400` error.
-      - [ ] If there are duplicate items in the `shoppingCart`, it should throw a `400` error.
-      - [ ] If either the `quantity` or `itemId` field is missing for any of the items in the `shoppingCart`, a `400` error should be thrown.
-      - [ ] When both are there, it should calculate the total cost of all the items (including quantities), add a `8.75%` tax to the total, and create a new purchase object containing 6 required fields and 1 optional field:
+          - [x] The `itemId` field should store the `id` of the item being purchased
+          - [x] The `quantity` field should store a number representing how many of that item the user is purchasing.
+      - [x] The `user` field should contain the name and email of the person placing the order.
+      - [x] When either the `shoppingCart` or `user` fields are missing, it should throw a `400` error.
+      - [x] If there are duplicate items in the `shoppingCart`, it should throw a `400` error.
+      - [x] If either the `quantity` or `itemId` field is missing for any of the items in the `shoppingCart`, a `400` error should be thrown.
+      - [x] When both are there, it should calculate the total cost of all the items (including quantities), add a `8.75%` tax to the total, and create a new purchase object containing 6 required fields and 1 optional field:
         - **required**:
-          - [ ] `id` - the new `id` of the purchase should be equal to one more than the current number of existing purchases
-          - [ ] `name` - the name of the user making the purchase
-          - [ ] `email` - the email of the user making the purchase
-          - [ ] `order` - the `shoppingCart` value sent in the `POST` request
-          - [ ] `total` - the calculated total of the order
-          - [ ] `createdAt` - a string representation of the date and time when the order was placed
+          - [x] `id` - the new `id` of the purchase should be equal to one more than the current number of existing purchases
+          - [x] `name` - the name of the user making the purchase
+          - [x] `email` - the email of the user making the purchase
+          - [x] `order` - the `shoppingCart` value sent in the `POST` request
+          - [x] `total` - the calculated total of the order
+          - [x] `createdAt` - a string representation of the date and time when the order was placed
         - **optional**:
           - [ ] `receipt` - text describing the order (what might go on a receipt)
-      - [ ] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
+      - [x] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
 
 ---
 
@@ -291,20 +291,22 @@ The following specifications were met on the Express backend and the React front
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the labs helped me prepare. In particular, the 2 labs of week 4 helped me complete the backend for the Student Store. However, I did have to do some research on my own to understand the backend better since the 2 labs were a little vague.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time, I'd be spending more time testing my app and polishing it. For example, I would be testing it for things like not responding when users type only whitespace in the search bar.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+Overall, I think this project went pretty smoothly and really helped me connect all the concepts we learned since we did it over the span of 2 weeks. I also think it helped me improve my debugging and problem solving skills.
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- N/A
 
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+
+Yilika
