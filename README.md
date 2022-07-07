@@ -305,7 +305,7 @@ Overall, I think this project went pretty smoothly and really helped me connect 
 
 ### Open-source libraries used
 
-- N/A
+- Bootstrap
 
 ### Shout out
 
